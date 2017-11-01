@@ -5,44 +5,37 @@ using namespace std;
 
 int main()
 {
-	int k,m;
+    int k,m;
+    string DNA;
+    while(cin>>k>>m)
+    {
 
-	
+        if(k == 0 && m == 0)
+            return 0;
+        set<string> validDNA;
 
-	while(cin>>k>>m)
-	{
-		vector<string> validDna; 
+        while(k--)
+        {
+            int copies;
+            int counter = 0;
+            cin>>copies>>DNA;
 
-		if(k == 0 && m == 0)
-			return 0;
+            while(DNA.length() >= m)
+            {
+                //if DNA not found in set
+                if(validDNA.find(DNA) == validDNA.end())
+                {
+                    validDNA.insert(DNA);
+                    counter++;
+                }
+                if(copies == counter)
+                    break;
+                DNA.pop_back();
+            }
 
-		while(k--)
-		{
-			int copies;
-			string dna;
-			int count = 0;
+        }
+        cout<<validDNA.size()<<"\n";
 
-			cin>>copies>>dna;
-			while(dna.length() >= m)
-			{
-				//if not found
-				if(validDna.find(dna) == validDna.end())
-				{
-
-					validDna.insert(dna);
-					count++;
-				}
-				if(count == copies)
-					break;
-
-				dna.pop_back();
-			}
-
-
-		}
-		cout<< validDna.size() <<"\n";
-
-
-	}
-	return 0;
+    }
+    return 0;
 }
